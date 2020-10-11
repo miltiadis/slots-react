@@ -1,0 +1,36 @@
+.c-filter {
+  display: flex;
+  justify-content: flex-end;
+  flex: 1;
+  margin-right: 76px;
+  margin-bottom: 16px;
+
+  @media (max-width: 992px) {
+    margin-right: 0;
+  }
+
+  &__item {
+    width: 24px;
+    margin-right: 20px;
+    color: #5B6770;
+    text-decoration: none;
+    text-align: center;
+    transition: all 0.3s ease-out;
+
+    &.is-active {
+      fill: #00A9E0;
+      color: #00A9E0;
+    }
+
+    &:hover {
+      fill: #00A9E0;
+      color: #00A9E0;
+    }
+  }
+
+  &__label {
+    font-size: 12px;
+    font-family: $primary-font;
+    text-decoration: none;
+  }
+}

@@ -1,0 +1,92 @@
+.c-slot {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-auto-rows: 1fr 1fr;
+  grid-gap: 10px;
+  grid-auto-flow: row;
+  //fix this
+  margin-bottom: 10px;
+  position: relative;
+
+  @media (min-width: 576px) {
+    grid-template-columns: repeat(4, 1fr);
+    grid-auto-rows: 1fr 1fr;
+    grid-gap: 12.5px;
+    margin-bottom: 12.5px;
+    grid-auto-flow: row;
+  }
+
+  @media (min-width: 768px) {
+    grid-gap: 15px;
+    margin-bottom: 15px;
+  }
+
+  @media (min-width: 992px) {
+    grid-template-columns: repeat(7, 1fr);
+    grid-template-rows: 1fr 1fr;
+    grid-gap: 20px;
+    margin-bottom: 20px;
+  }
+
+
+  &__badge {
+    position: absolute;
+
+    &--new {
+      left: 10px;
+      top: 10px;
+    }
+
+    &--high-limit {
+      top: -13px;
+      transform: rotate(315deg);
+      right: 10px;
+
+      @media (min-width: 576px) {
+        top:inherit;
+        transform: inherit;
+        right: 0;
+      }
+
+    }
+  }
+
+  &__item {
+    position: relative;
+    animation-name: zoomIn;
+    animation-duration: 0.5s;
+    animation-fill-mode: forwards;
+
+    @keyframes zoomIn {
+      0% {
+        opacity: 0;
+        -webkit-transform: scale3d(.3, .3, .3);
+        transform: scale3d(.3, .3, .3)
+      }
+
+      50% {
+        opacity: 1
+      }
+    }
+
+
+    &--large {
+      grid-column-end: 2 span;
+      grid-row-end: 2 span;
+      justify-self: center;
+    }
+  }
+
+  &__title {
+    font-size: 20px;
+    font-weight: 400;
+    color: #00A9E0;
+    font-family: $primary-font;
+    position: absolute;
+    top: -50px;
+
+    @media (min-width: 768px) {
+      font-size: 36px;
+    }
+  }
+}

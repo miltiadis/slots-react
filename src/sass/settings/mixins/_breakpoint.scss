@@ -1,0 +1,4 @@
+// Expects that you design mobile-first
+@mixin breakpoint($width) {
+  @media only screen and (min-width: $width) { @content }
+}

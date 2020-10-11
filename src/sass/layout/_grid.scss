@@ -1,0 +1,78 @@
+.l {
+  &-main {
+    max-width: 1632px;
+    margin: 10px;
+
+    @media (min-width: 1200px) {
+      margin: 10px auto 0;
+    }
+
+  }
+
+  &-row {
+    display: flex;
+
+    &-multiline {
+      align-items: flex-start;
+      flex-wrap: wrap;
+    }
+  }
+
+  &-column {
+
+    margin-right: 20px;
+    border: 1px solid green;
+
+    &-1 {
+      width: 120px;
+    }
+
+    &-2 {
+      width: 120* 2px;
+    }
+
+    &-3 {
+      width: 120* 3px;
+    }
+
+    &-4 {
+      width: 120* 4px;
+    }
+
+    &-5 {
+      width: 120* 5px;
+    }
+
+    &-6 {
+      width: 120* 6px;
+    }
+
+    &-7 {
+      width: 120* 7px;
+    }
+
+    &-8 {
+      width: 120* 8px;
+    }
+
+    &-9 {
+      width: 120* 9px;
+    }
+
+    &-10 {
+      width: 120* 10px;
+    }
+
+    &-11 {
+      width: 120* 11px;
+    }
+
+    &-12 {
+      width: 120* 12px;
+    }
+
+    &:last-of-type {
+      margin-right: 0;
+    }
+  }
+}
