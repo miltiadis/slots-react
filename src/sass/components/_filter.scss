@@ -2,35 +2,36 @@
   display: flex;
   justify-content: flex-end;
   flex: 1;
-  margin-right: 76px;
+  margin-right: 0;
   margin-bottom: 16px;
 
-  @media (max-width: 992px) {
-    margin-right: 0;
+  @include breakpoint(property('breakpoint.lg')) {
+    margin-right: 76px;
   }
+
 
   &__item {
     width: 24px;
     margin-right: 20px;
-    color: #5B6770;
+    color: property('color.secondary');
     text-decoration: none;
     text-align: center;
-    transition: all 0.3s ease-out;
+    transition: property('transition.primary');
 
     &.is-active {
-      fill: #00A9E0;
-      color: #00A9E0;
+      fill: property('color.primary');
+      color: property('color.primary');
     }
 
     &:hover {
-      fill: #00A9E0;
-      color: #00A9E0;
+      fill: property('color.primary');
+      color: property('color.primary');
     }
   }
 
   &__label {
-    font-size: 12px;
-    font-family: $primary-font;
+    font-size:  property('typography.font.size.primary');
+    font-family: #{property('typography.font.family.primary')};
     text-decoration: none;
   }
 }

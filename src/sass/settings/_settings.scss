@@ -1,0 +1,39 @@
+$slots-theme: (
+        container:(
+                main:1632px
+        ),
+        breakpoint:(
+                xs: 0,
+                sm: 576px,
+                md: 768px,
+                lg: 992px,
+                xl: 1200px,
+                xxl: 1400px
+        ),
+        color:(
+                primary: #00A9E0,
+                secondary:#5B6770,
+                tertiary: #fff,
+                quaternary:#1CAFFF,
+                border:(
+                        primary:#5B6770,
+                        secondary: #fff,
+                ),
+        ),
+        typography:(
+                font:(
+                        family:(
+                                primary:"'Open Sans', sans-serif",
+                                secondary: "'museo-sans', sans-serif"
+                        ),
+                        size:(
+                                primary: 12px,
+                                secondary: 18px,
+                                tertiary: 10px,
+                        )
+                )
+        ),
+        transition: (
+                primary:all 0.3s ease-out
+        ),
+) !default;

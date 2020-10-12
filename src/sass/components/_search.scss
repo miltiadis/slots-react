@@ -2,24 +2,24 @@
   position: relative;
 
   &__item {
-    border: 1px solid #5B6770;
+    border: 1px solid property('color.border.primary');
     border-radius: 20px;
-    color: #5B6770;
+    color: property('color.secondary');
     height: 40px;
-    font-size: 18px;
+    font-size: property('typography.font.size.secondary');
     font-weight: 300;
     padding-left: 20px;
     padding-right: 50px;
     width: 160px;
-    font-family: $secondary-font;
+    font-family: #{property('typography.font.family.secondary')};;
 
     &:focus {
-      background: #00A9E0;
-      color: #fff;
-      border-color: #fff;
+      background: property('color.primary');
+      color: property('color.tertiary');
+      border-color: property('color.border.secondary');
 
       &::placeholder {
-        color: #fff;
+        color: property('color.tertiary');
       }
     }
   }
@@ -31,13 +31,13 @@
     top: 3px;
     height: 34px;
     width: 37px;
-    background-color: #5B6770;
+    background-color: property('color.secondary');
     border-radius: 20px;
     padding: 5px;
-    fill: #fff;
+    fill: property('color.tertiary');
 
     &.is-active {
-      background: #00A9E0;
+      background: property('color.primary');
     }
   }
 

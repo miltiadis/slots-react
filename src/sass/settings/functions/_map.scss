@@ -1,0 +1,122 @@
+@function map-get-deep($map, $keys...) {
+  @if length($keys) == 1 {
+    $keys: nth($keys, 1);
+  }
+  $warn: '#{nth($keys, 1)}';
+  $length: length($keys);
+  $get: map-get($map, nth($keys, 1));
+
+  @if $length > 1 {
+    @for $i from 2 through $length {
+      @if $get != null and type-of($get) == 'map' {
+        $warn: $warn + '->#{nth($keys, $i)}';
+        $get: map-get($get, nth($keys, $i));
+
+        @if $get == null {
+          @return map-get-deep-warning($warn, $get, nth($keys, $i));
+        }
+      } @else {
+        @return map-get-deep-warning($warn, $get, nth($keys, $i));
+      }
+    }
+  }
+
+  @return $get;
+}
+
+@function map-deep-get-short($map, $keys...) {
+  @each $key in $keys {
+    $map: map-get($map, $key);
+  }
+
+  @return $map;
+}
+
+@function map-get-deep-warning($warn, $get, $key) {
+  @if $get == null {
+    @warn 'Map has no value for key search #{$warn}';
+  }
+  @else if type-of($get) != 'map' {
+    @warn 'Non-map value found for key search `#{$warn}`, cannot search for key #{$key}';
+  }
+  @return null;
+}
+
+// Merge Maps recursive
+@function map-extend($map, $maps...) {
+  $last: nth($maps, -1);
+  $deep: $last == true;
+  $max: if($deep, length($maps) - 1, length($maps));
+
+  // Loop through all maps in $maps...
+  @for $i from 1 through $max {
+    // Store current map
+    $current: nth($maps, $i);
+
+    // If not in deep mode, simply merge current map with map
+    @if not $deep {
+      $map: map-merge($map, $current);
+    } @else {
+      // If in deep mode, loop through all tuples in current map
+      @each $key, $value in $current {
+
+        // If value is a nested map and same key from map is a nested map as well
+        @if type-of($value) == 'map' and type-of(map-get($map, $key)) == 'map' {
+          // Recursive extend
+          $value: map-extend(map-get($map, $key), $value, true);
+        }
+
+        // Merge current tuple with map
+        $map: map-merge($map, ($key: $value));
+      }
+    }
+  }
+  @return $map;
+}
+
+@function map-get-next($map, $key, $fallback: false) {
+
+  // Check if map is valid
+  @if type-of($map) == map {
+
+    // Check if key exists in map
+    @if map-has-key($map, $key) {
+
+      // Init index counter variable
+      $i: 0;
+
+      // Init key index
+      $key-index: false;
+
+      // Traverse map for key
+      @each $map-key, $map-value in $map {
+        // Update index
+        $i: $i + 1;
+
+        // If map key found, set key index
+        @if $map-key == $key {
+          $key-index: $i;
+        }
+
+        // If next index return next value
+        @if $i == $key-index + 1 {
+          @return $map-value;
+        }
+
+        // If last entry return false
+        @if $i == length($map) {
+          @return $fallback;
+        }
+      }
+
+      @warn 'No next map item for key #{$key}';
+      @return $fallback;
+    }
+
+    @warn 'No valid key #{$key} in map';
+    @return $fallback;
+  }
+
+  @warn 'No valid map';
+  @return $fallback;
+}
